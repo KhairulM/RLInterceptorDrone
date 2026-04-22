@@ -1,4 +1,4 @@
-# Template for Isaac Lab Projects
+# RL Interceptor Drone
 
 ## Overview
 
@@ -14,16 +14,32 @@ It allows you to develop in an isolated environment, outside of the core Isaac L
 
 ## Installation
 
+- Requirements: Python 3.11 and Isaac Sim 5.1.0.
+
 - Install Isaac Lab by following the [installation guide](https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/index.html).
   We recommend using the conda or uv installation as it simplifies calling Python scripts from the terminal.
 
 - Clone or copy this project/repository separately from the Isaac Lab installation (i.e. outside the `IsaacLab` directory):
 
-- Using a python interpreter that has Isaac Lab installed, install the library in editable mode using:
+- Install dependencies in this order:
 
     ```bash
-    # use 'PATH_TO_isaaclab.sh|bat -p' instead of 'python' if Isaac Lab is not installed in Python venv or conda
+    # 1) Recommended: create a Python 3.11 virtual environment
+    python3.11 -m venv .venv
+    source .venv/bin/activate
+
+    # 2) Install Isaac Sim Python package
+    pip install "isaacsim[all,extscache]==5.1.0" --extra-index-url https://pypi.nvidia.com
+
+    # 3) Install Isaac Lab (from source)
+    ${PATH_TO_ISAACLAB}/isaaclab.sh --install
+
+    # 4) Install OmniDrones (editable)
+    python -m pip install -e source/OmniDrones
+
+    # 5) Install RLInterceptorDrone (editable)
     python -m pip install -e source/RLInterceptorDrone
+    ```
 
 - Verify that the extension is correctly installed by:
 
